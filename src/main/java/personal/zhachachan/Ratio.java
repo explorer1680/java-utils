@@ -1,6 +1,6 @@
-package YeBaoLun;
+package personal.zhachachan;
 
-public class App3 {
+public class Ratio {
 	public static void main(String[] args){
 		long[] Summary = new long[190];
 		long total = 0;
