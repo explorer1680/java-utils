@@ -1,0 +1,9 @@
+in JobWorker1, the sleep() method can be interrupted.
+
+in JobWorker2, the Thread.currentThread().isInterrupted() is used to check the interruption, actually, you can define any flag that reflect interrupt.
+
+in JobWorker3, the Thread.currentThread().interrupt() is used to work with Thread.currentThread().isInterrupted() to check flag.
+
+As you can see, the interrupt for thread is only useful when sleep() happens.
+
+https://www.baeldung.com/java-concurrent-locks
