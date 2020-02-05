@@ -1,0 +1,2 @@
+java 7, 8, 9 doc:
+https://www.javatpoint.com/java-8-functional-interfaces
