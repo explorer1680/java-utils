@@ -1,5 +1,6 @@
 package personal.java8;
 
+@FunctionalInterface
 interface Sayable2 {
 	// default method
 	default void say() {
@@ -13,6 +14,9 @@ interface Sayable2 {
 	static void sayLouder(String msg) {
 		System.out.println(msg);
 	}
+	
+//	default String toString(){//default method can't be Object method.
+//	}
 }
 
 /*

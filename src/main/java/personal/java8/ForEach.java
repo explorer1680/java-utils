@@ -12,5 +12,7 @@ public class ForEach {
         gamesList.add("Hocky");  
         System.out.println("------------Iterating by passing method reference---------------");  
         gamesList.forEach(System.out::println);  
+//        gamesList.forEach(System.out.println);  //this is a statement, not a method reference.
+        gamesList.forEach((a) -> System.out.println(a));
     }  
 }

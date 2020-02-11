@@ -1,7 +1,9 @@
 package personal.java8.method.reference;
 
+@FunctionalInterface
 interface Sayable {
 	void say();//the method name is say()
+//	void play(); //it should be a SAM Interfaces
 }
 
 public class StaticMethod {

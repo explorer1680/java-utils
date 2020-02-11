@@ -6,6 +6,8 @@ interface sayable {
 	// It can contain any number of Object class methods.
 
 	int hashCode();
+	//https://stackoverflow.com/questions/8721848/overriding-object-class-methods-within-an-interface-in-java
+	//why no implements in the class.
 
 	String toString();
 
