@@ -1,4 +1,4 @@
-package personal.java8;
+package personal.java8.stream;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ public class JavaStream {
         productsList.add(new Product(5,"Apple Laptop",90000f));  
         List<Float> productPriceList2 =productsList.stream()  
                                      .filter(p -> p.price > 28000)// filtering data  
-                                     .map(p->p.price)        // fetching price  
+                                     .map(p->p.price)       // fetching price  
                                      .collect(Collectors.toList()); // collecting as list  
         System.out.println(productPriceList2);  
     }  
