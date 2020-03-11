@@ -24,22 +24,50 @@ public class BraceCheck {
 
 		String s = "xx{y[y[xx(ere)f]g(f)h]dfdjgj}dfg";
 
-		LinkedList ll = new LinkedList();
 
-		List l = Arrays.asList(s.split("")).stream().filter(p -> bracket.contains(p)).collect(Collectors.toList());
+
+		List<String> l = Arrays.asList(s.split("")).stream().filter(p -> bracket.contains(p)).collect(Collectors.toList());
 		
-		ll.addAll(l);
+		System.out.println(method1(l));
 		
-		LinkedList<String> result = reduceBracketPair(ll);
+//		LinkedList ll = new LinkedList();
+//		ll.addAll(l);
+//		
+//		LinkedList<String> result = reduceBracketPair(ll);
+//		
+//		if(result == null){
+//			System.out.println("False");
+//		}else if(result.size() == 0){
+//			System.out.println("True");
+//		}else{
+//			System.out.print("?");
+//		}
+
+	}
+
+
+	private static boolean method1(List l) {
+		String s2 = String.join("", l);
 		
-		if(result == null){
-			System.out.println("False");
-		}else if(result.size() == 0){
-			System.out.println("True");
-		}else{
-			System.out.print("?");
+		int length = s2.length();
+		boolean changed = true;
+		while(changed && !s2.isEmpty()){
+			System.out.println(s2);
+			s2 = s2.replaceAll("\\(\\)", "");
+			System.out.println(s2);
+			s2 = s2.replaceAll("\\[\\]", "");
+			System.out.println(s2);
+			s2 = s2.replaceAll("\\{\\}", "");
+			System.out.println(s2);
+			changed = !(length == s2.length());
+			length = s2.length();
 		}
-
+		
+		if(s2.isEmpty()){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 
