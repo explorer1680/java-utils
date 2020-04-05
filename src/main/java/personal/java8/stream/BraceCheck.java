@@ -26,7 +26,7 @@ public class BraceCheck {
 
 
 
-		List<String> l = Arrays.asList(s.split("")).stream().filter(p -> bracket.contains(p)).collect(Collectors.toList());
+		List<String> l = Arrays.stream(s.split("")).filter(p -> bracket.contains(p)).collect(Collectors.toList());
 		
 		System.out.println(method1(l));
 		
@@ -46,7 +46,7 @@ public class BraceCheck {
 	}
 
 
-	private static boolean method1(List l) {
+	private static boolean method1(List<String> l) {
 		String s2 = String.join("", l);
 		
 		int length = s2.length();

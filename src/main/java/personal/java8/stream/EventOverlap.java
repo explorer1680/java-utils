@@ -29,7 +29,7 @@ public class EventOverlap {
 					.filter(p -> (p.getStart() > e.getStart() && p.getStart() < e.getEnd())
 							|| (p.getEnd() > e.getStart() && p.getEnd() < e.getEnd()))
 					.map(p -> new Pair(e, p)).collect(Collectors.toCollection(() -> pairList));
-//			pairList.addAll(tempPairList);
+//			pairList.addAll(tempPairList);  collect(Collectors.toList())
 		}
 		pairList.stream().forEach(System.out::println);
 	}
