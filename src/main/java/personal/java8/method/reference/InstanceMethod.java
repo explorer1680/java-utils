@@ -7,6 +7,7 @@ package personal.java8.method.reference;
  */
 interface Sayable2{  
     void say();  
+//    void second();//if you define the second abstract method, it will not working like this way.
 }  
 
 public class InstanceMethod {

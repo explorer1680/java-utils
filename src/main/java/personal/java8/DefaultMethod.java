@@ -1,12 +1,12 @@
 package personal.java8;
 
-@FunctionalInterface
+//@FunctionalInterface
 interface Sayable2 {
 	// default method
 	default void say() {
 		System.out.println("Hello, this is default method");
 	}
-
+	void second();
 	// Abstract method
 	void sayMore(String msg);
 
@@ -35,5 +35,10 @@ public class DefaultMethod implements Sayable2{
         dm.say();                       // calling default method    
         dm.sayMore("Work is worship");      // calling abstract method    
         Sayable2.sayLouder("Helloooo...");   // calling static method    
-    }  
+    }
+	@Override
+	public void second() {
+		// TODO Auto-generated method stub
+		
+	}  
 }

@@ -24,6 +24,14 @@ public class TreeStructure {
 		getAllNotesOnList(n1);
 		System.out.println(getAllNotesOnList(n1).stream().sorted(Comparator.comparing(Note::getNumber, new NoteComparator()))
 				.collect(Collectors.toList()));
+		System.out.println(getAllNotesOnList(n1).stream().sorted(Comparator.comparing(Note::getNumber, new  Comparator<Integer>(){
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				// TODO Auto-generated method stub
+				return o2 - o1;
+			}
+		}))
+				.collect(Collectors.toList()));
 		// System.out.print(TreeStructure.list);
 	}
 

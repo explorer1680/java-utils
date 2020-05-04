@@ -1,4 +1,4 @@
-package personal.java8;
+package personal.java8.lambda;
 
 @FunctionalInterface // It is optional
 interface Drawable {
