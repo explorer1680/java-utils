@@ -66,8 +66,8 @@ public class CountPopulation {
 		countryList.add(a2);
 		countryList.add(a3);
 		
-//		int count = countryList.stream().filter(p -> p.getContinent().equals("A")).mapToInt(c -> c.getPopulation()).sum();
-		int count = countryList.stream().filter(p -> p.getContinent().equals("A")).reduce(100, (x, y) -> x + y.getPopulation(), (x, y) -> x + y);
+//		int count = countryList.stream().filter(p -> p.getContinent().equals("A")).parallel().mapToInt(c -> c.getPopulation()).sum();
+		int count = countryList.stream().filter(p -> p.getContinent().equals("A")).parallel().reduce(100, (x, y) -> x + y.getPopulation(), (x, y) -> x + y);
 		
 		
 		System.out.println(count);

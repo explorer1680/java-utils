@@ -1,4 +1,4 @@
-package personal.prrint;
+package personal.print;
 
 //https://stackoverflow.com/questions/2864622/how-do-i-run-class-files-on-windows-from-command-line
 public class PrintOnPreviousLine {

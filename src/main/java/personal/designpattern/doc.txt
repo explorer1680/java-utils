@@ -1,0 +1,4 @@
+You have a object alice and bob, when you set the value to these object, the expected operation for each of them are different.
+You can define different class for them.
+You can use mediator design pattern.
+

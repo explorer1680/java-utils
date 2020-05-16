@@ -9,8 +9,8 @@ public class EventOverlap {
 
 		Event event1 = new Event(1, 5);
 		Event event2 = new Event(2, 7);
-		Event event3 = new Event(4, 5);
-		Event event4 = new Event(7, 15);
+		Event event3 = new Event(5, 7);
+		Event event4 = new Event(4, 15);
 
 		List<Event> eventList = new ArrayList<>();
 
@@ -26,8 +26,9 @@ public class EventOverlap {
 		for (Event e : eventList) {
 			tempList.remove(e);
 			List<Pair> tempPairList = tempList.stream()
-					.filter(p -> (p.getStart() > e.getStart() && p.getStart() < e.getEnd())
-							|| (p.getEnd() > e.getStart() && p.getEnd() < e.getEnd()))
+//					.filter(p -> (p.getStart() > e.getStart() && p.getStart() < e.getEnd())
+//							|| (p.getEnd() > e.getStart() && p.getEnd() < e.getEnd()))
+					.filter(p -> !(p.getStart() >e.getEnd() || e.getStart() >p.getEnd()))
 					.map(p -> new Pair(e, p)).collect(Collectors.toCollection(() -> pairList));
 //			pairList.addAll(tempPairList);  collect(Collectors.toList())
 		}
