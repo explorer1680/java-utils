@@ -13,8 +13,8 @@ import personal.unittest.junit.Version;
 
 
 
-//@RunWith(PowerMockRunner.class)
-//@PrepareForTest(Version.class)
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Version.class)
 public class VersionTest {
 	
 	@Test
