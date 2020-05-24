@@ -1,0 +1,7 @@
+how to test the constructor calling the method:
+
+isSnapshot() ?
+
+it looks that you can not test it.
+You can only test the value of the calling constructor, but you can not test the behavior of the constructor calling method.
+

@@ -1,4 +1,4 @@
-package personal.test;
+package personal.interesting.question;
 
 public class GroupOfConnectedDot {
 	

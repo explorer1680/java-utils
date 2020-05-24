@@ -1,4 +1,4 @@
-package test;
+package personal.gc;
 
 public class GCTest {
 	
