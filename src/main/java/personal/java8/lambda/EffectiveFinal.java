@@ -6,6 +6,7 @@ public class EffectiveFinal {
 		for (int i = 0; i < 10; i++) {
 		    new Thread(() -> {
 //		        System.out.println("i = " + i); // Does not compile!
+		    	System.out.println(Thread.currentThread().getName());
 		    }).start();
 		}
 	}
