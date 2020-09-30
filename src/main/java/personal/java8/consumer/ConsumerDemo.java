@@ -19,7 +19,8 @@ public class ConsumerDemo {
 		//*************Test1
 		Consumer<Integer> consumer = System.out::println;
 		consumer = consumer.andThen(t-> System.out.println(++t));
-		list.stream().forEach(consumer.andThen(t-> System.out.println(t+1)));
+//		list.stream().forEach(consumer.andThen(t-> System.out.println(t+1)));
+		list.stream().forEach(((Consumer<Integer>)System.out::println).andThen(t->System.out.println(t+1)));
 		
 		//**************Test2
 //		list.stream().map(i -> ++i).forEach(System.out::println);
