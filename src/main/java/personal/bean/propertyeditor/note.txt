@@ -1,0 +1,9 @@
+Bean -> Bean properties -> Bean Properties Editor
+BeanInfo is interface, SimpleBeanInfo is helper to define BeanInfo
+PropertyDescriptor is the basic element to define BeanInfo
+
+PropertyEditor is for mapping property <-> String
+PropertyEditorSupport is the helper class for create PropertyEditor.
+
+PropertyEditorManager
+Introspector
