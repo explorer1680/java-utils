@@ -7,20 +7,25 @@ import java.beans.SimpleBeanInfo;
 
 public class WeightBeanInfo extends SimpleBeanInfo {
 
-	private WeightEditor weightEditor = new WeightEditor();
+//	private WeightEditor weightEditor = new WeightEditor();
 
 	@Override
 	public PropertyDescriptor[] getPropertyDescriptors() {
 
 		PropertyDescriptor propertyDescriptor;
 		try {
-			propertyDescriptor = new PropertyDescriptor("weight", Weight.class, "getWeight", "setWeight") {
-
-				@Override
-				public PropertyEditor createPropertyEditor(Object Bean) {
-					return weightEditor;
-				}
-			};
+			propertyDescriptor = new PropertyDescriptor("weight", Weight.class, "getWeight", "setWeight");
+//			{
+//
+//				@Override
+//				public PropertyEditor createPropertyEditor(Object Bean) {
+//					return weightEditor;
+//				}
+//			};
+			
+			//another way to do it:
+//			propertyDescriptor.setPropertyEditorClass(WeightEditor.class);
+			
 			return new PropertyDescriptor[] { propertyDescriptor };
 
 		} catch (IntrospectionException e) {
