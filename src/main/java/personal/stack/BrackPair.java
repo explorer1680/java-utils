@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
-import personal.java8.stream.BraceCheck;
-
 public class BrackPair {
 	
 	public static void main(String[] args){
