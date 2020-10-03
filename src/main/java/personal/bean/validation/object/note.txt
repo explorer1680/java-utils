@@ -1,0 +1,17 @@
+1. in pom.xml, we need:
+	hibernate-validator
+	javax.el-api
+	javax.el
+	
+2. validator.validate(), return Set<constraintviolation>
+
+3. @Valid has the function of Cascade.
+
+4. groups define validation group, if it is not defined in the annotation, it belong to default group.
+	and this group is validate again the validator.validate(object)
+	
+5. @GroupSequence can combine all group together, but it will finish if previous group validation fails.
+
+6. to validate all, just add all groups to validator.validate(object, group1, group2, ...)
+
+7. toggle comment on @ConvertGroup to see the result.
