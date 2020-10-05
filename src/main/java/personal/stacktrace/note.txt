@@ -1,0 +1,17 @@
+Exception trace remember method calls.
+
+Exception in thread "main" personal.stacktrace.ExceptionC: personal.stacktrace.ExceptionB: personal.stacktrace.ExceptionA
+(when you throws from Main)
+personal.stacktrace.ExceptionC: personal.stacktrace.ExceptionB: personal.stacktrace.ExceptionA
+(when you printStackTrace in the main method)
+
+on the way the exception bubbled up, when new exception created with the old exception, by:
+		catch (ExceptionA e) {
+			throw new ExceptionB(e);
+		}
+
+you will see the Exception chain: 
+personal.stacktrace.ExceptionC: personal.stacktrace.ExceptionB: personal.stacktrace.ExceptionA
+
+"...3 more"
+	means there are 3 method call layer after this Exception.

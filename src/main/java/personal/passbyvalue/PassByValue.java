@@ -14,6 +14,11 @@ public class PassByValue {
 
 		pointToNewArray(arr);
 		Arrays.stream(arr).forEach(System.out::println);
+		
+		int i = 1000;
+		changeInt(i);
+		System.out.println(i);
+		
 	}
 
 	static void changeValue(Integer[] arr) {
@@ -23,5 +28,9 @@ public class PassByValue {
 	static void pointToNewArray(Integer[] arr) {
 		arr = new Integer[] { 100, 200, 300 };
 		Arrays.stream(arr).forEach(System.out::println);
+	}
+	
+	static void changeInt(int i) {
+		i = 5000;
 	}
 }
