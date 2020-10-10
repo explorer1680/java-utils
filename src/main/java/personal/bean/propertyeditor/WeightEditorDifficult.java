@@ -6,6 +6,7 @@ import java.awt.Rectangle;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyEditor;
 
+//this class show the full definition of the property editor
 public class WeightEditorDifficult implements PropertyEditor{
 
 	@Override
