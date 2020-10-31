@@ -8,7 +8,7 @@
 3. @Valid has the function of Cascade.
 
 4. groups define validation group, if it is not defined in the annotation, it belong to default group.
-	and this group is validate again the validator.validate(object)
+	and this group is validate against the validator.validate(object)
 	
 5. @GroupSequence can combine all group together, but it will finish if previous group validation fails.
 
