@@ -7,3 +7,5 @@ PropertyEditorSupport is the helper class for create PropertyEditor.
 
 PropertyEditorManager
 Introspector
+
+We don't need WeightBeanInfo in this example.

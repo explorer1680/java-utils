@@ -1,8 +1,10 @@
-package personal.bean.propertyeditor;
+package personal.bean.propertyeditor.anotherpackage;
 
 import java.beans.PropertyEditorSupport;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import personal.bean.propertyeditor.Weight;
 
 public class WeightEditor extends PropertyEditorSupport{
 	
