@@ -1,10 +1,12 @@
-package personal.bean.beaninfo.specialbean;
+package personal.bean.beaninfo.specialbean.anotherpackage;
 
 import java.beans.IntrospectionException;
 import java.beans.PropertyDescriptor;
 import java.beans.SimpleBeanInfo;
 import java.util.ArrayList;
 import java.util.List;
+
+import personal.bean.beaninfo.specialbean.Foo;
 
 public class FooBeanInfo extends SimpleBeanInfo {
 
