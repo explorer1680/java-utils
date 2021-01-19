@@ -1,0 +1,46 @@
+https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html
+
+
+Kind																				Example
+Reference to a static method														ContainingClass::staticMethodName
+Reference to an instance method of a particular object								containingObject::instanceMethodName
+Reference to an instance method of an arbitrary object of a particular type			ContainingType::methodName
+Reference to a constructor															ClassName::new
+
+https://coderanch.com/t/712821/java/explain-Reference-instance-method-arbitrary
+
+
+
+private void trackFirmBillingChanges(long companyId, Firmbilling previous, Firmbilling current) {
+    EventPublisher eventPublisher = RedihiveApplicationContextHolder.getBean(EventPublisher.class);
+	//BiConsumer<...> is Functional interface
+	//You provide and implementation by lambda
+	BiConsumer<String, Function<Firmbilling, Object>> tracker = (type, getter) -> {
+		//the second parameter is also an Functional Interface: Function<...>
+		//You use the interface by apply(...), 
+		//please note, the parameter for apply(...) is type Firmbilling, that is why when you provide implementation by:
+		//Firmbilling::getPayorname, it compiles without an error.
+	    Object oldValue = getter.apply(previous);
+	    //Also, here, you access to the variable previous/current, it is Effective Final. 
+	    Object newValue = getter.apply(current);
+	
+	    if (!Objects.equals(oldValue, newValue)) {
+	
+	        eventPublisher.send(
+	                type,
+	                ImmutableMap.<String, Object>builder()
+	                        .put("companyId", companyId)
+	                        .put("oldValue", Optional.ofNullable(oldValue).orElse(""))
+	                        .put("newValue", Optional.ofNullable(newValue).orElse(""))
+	                        .build()
+	        );
+	    }
+	};
+
+	//You call the implementation
+	//You provide the second parameter by provide an:
+	//		Reference to an instance method of an arbitrary object of a particular type	
+	tracker.accept("COMPANY_BILLING_NAME_CHANGE", Firmbilling::getPayorname);
+	
+	
+}
