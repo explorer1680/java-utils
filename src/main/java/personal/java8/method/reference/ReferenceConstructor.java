@@ -1,12 +1,15 @@
 package personal.java8.method.reference;
 
+//the reference constructor is a way to create Object.
 interface Messageable {
 	Message getMessage(String msg);
 }
 
 class Message {
+	private String msg;
 	Message(String msg) {
-		System.out.print(msg);
+		this.msg = msg;
+		System.out.print(this.msg);
 	}
 }
 

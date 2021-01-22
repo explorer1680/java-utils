@@ -62,7 +62,7 @@ public class TypeMethod {
 		//getString is static method, it does not expect extra parameter.
 		NormalInterface ns = TypeMethod::getString;
 		
-		//You can all provide implementation to TypeInterface by: Reference to an instance method of a particular object
+		//You can also provide implementation to TypeInterface by: Reference to an instance method of a particular object
 		TypeInterface t3 = typeInstance::getInfo;
 		//So, the special thing is not about the definition of Functional Interface
 		//The special thing is about: Reference to an instance method of an arbitrary object of a particular type
