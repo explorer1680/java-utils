@@ -1,4 +1,4 @@
-package personal.java8.method.reference;
+ package personal.java8.method.reference;
 
 @FunctionalInterface
 interface Sayable {

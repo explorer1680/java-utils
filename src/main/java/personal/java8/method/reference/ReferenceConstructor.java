@@ -7,6 +7,7 @@ interface Messageable {
 
 class Message {
 	private String msg;
+
 	Message(String msg) {
 		this.msg = msg;
 		System.out.print(this.msg);
