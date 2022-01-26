@@ -38,7 +38,7 @@ public class MethodValidationTest {
 		.map(ConstraintViolation::getMessage)
 		.forEach(System.out::println);
 		
-		setName.invoke(user1, "Name2");
+//		setName.invoke(user1, "Name2");
 		
 		System.out.println(user1);
 		

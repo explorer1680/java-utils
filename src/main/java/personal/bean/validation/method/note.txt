@@ -2,9 +2,12 @@
 
 2. when validate method, we can use the @Valid to cascade to object validation.
 
-3. please note, the method validation not set the value.
+3. please note, the method validation not set the value, not really call the method.
+the 'user1' is still null with setName: "Name1"
 
-4. to validate the method when they are called. using spring:
+4. Spring Validation provides an integration with Hibernate Validator.
+to use spring to validate constructor, use: 
+MethodValidationPostProcessor + @Validated (normal method not needed)
 https://www.baeldung.com/javax-validation-method-constraints
 
-MethodValidationPostProcessor + @Validated
+5. If we are using Spring Boot, the container will register a MethodValidationPostProcessor bean for us as long as hibernate-validator is in the classpath.

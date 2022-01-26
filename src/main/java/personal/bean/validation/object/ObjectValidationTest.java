@@ -10,7 +10,7 @@ import javax.validation.groups.Default;
 
 import org.springframework.validation.annotation.Validated;
 
-@Validated
+//@Validated
 public class ObjectValidationTest {
 	public static void main(String[] args) {
 		ValidatorFactory factory = Validation.buildDefaultValidatorFactory();

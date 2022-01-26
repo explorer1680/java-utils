@@ -45,6 +45,8 @@ public class VersionTest {
 		 Version ver = new Version("1.2.3.SNAPSHOT");
 		 Mockito.verify(version).isSnapshot();
 		 
+		 System.out.println("123");
+		 
 //		 verifyNew(Version.class).withArguments("1.2.3.SNAPSHOT");
 		 
 		 
