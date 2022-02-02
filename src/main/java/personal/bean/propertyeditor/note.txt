@@ -9,3 +9,9 @@ PropertyEditorManager
 Introspector
 
 We don't need WeightBeanInfo in this example.
+
+
+BeanInfo is to define bean properties for class.
+If you define FooBeanInfo in the same package as Foo, it will provide customized properties for class Foo.
+Otherwise, the default one will works.
+The PropertyEditor provide function to convert Property Class <-> String.
