@@ -1,6 +1,9 @@
 1. to validate the method, we should use ExecutableValidator executableValidator from validator
 
 2. when validate method, we can use the @Valid to cascade to object validation.
+method validation need the constrains on the method.
+@Valid in method:
+	setAddress(@NotNull(message="Address may not be null") @Valid Address address)
 
 3. please note, the method validation not set the value, not really call the method.
 the 'user1' is still null with setName: "Name1"
