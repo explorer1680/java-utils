@@ -8,10 +8,14 @@
 3. @Valid has the function of Cascade.
 
 4. groups define validation group, if it is not defined in the annotation, it belong to default group.
-	and this group is validate against the validator.validate(object)
+	and default group is validated against the validator.validate(object)
 	
 5. @GroupSequence can combine all group together, but it will finish if previous group validation fails.
 
 6. to validate all, just add all groups to validator.validate(object, group1, group2, ...)
 
 7. toggle comment on @ConvertGroup to see the result.
+	the @ConverGroup: in test you want to validate against AdvanceInfo, in Child, you want to validate BasicInfo.
+	the @AdvanceInfo or @BasicInfo are the validation parameter
+	the validator.validate(...) method and the @Valid + @ConverGroup are the validation method.
+	
