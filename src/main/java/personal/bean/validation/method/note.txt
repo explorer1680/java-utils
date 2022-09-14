@@ -1,13 +1,17 @@
 1. to validate the method, we should use ExecutableValidator executableValidator from validator
 	the annotation for field not works for method, the annotations are same, but the position is different.
+	the ExecutableValidator can validate parameter and return value, can validate method and constructor.
 
 2. when validate method, we can use the @Valid to cascade to object validation.
 method validation need the constrains on the method.
 @Valid in method:
 	setAddress(@NotNull(message="Address may not be null") @Valid Address address)
+	
+	@NotNull in the above is validate method call, the address not null
+	you can put annotation inside of the Address, with @Valid, the object address will be validated.
 
 3. please note, the method validation not set the value, not really call the method.
-the 'user1' is still null with setName: "Name1"
+the 'user1' is still null with setName: "Name1", this behavior is different from the Spring method validation.
 
 4. Spring Validation provides an integration with Hibernate Validator, it is automatic validation.
 Note: Spring Validation is based on AOP and uses Spring AOP as the default implementation. 
