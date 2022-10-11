@@ -44,3 +44,97 @@ private void trackFirmBillingChanges(long companyId, Firmbilling previous, Firmb
 	
 	
 }
+
+
+
+
+
+Key to understand lambda function or functional interface:
+in previous java programming model, you provide function on the method, you call the method by provide data to it.
+in lambda programming model, you provide data inside of the method, you call the method by provide the function.
+
+
+VXEntityManager.usingMxValuesTx(entityManager -> {
+                PartyWFHandler partyWFHandler = new PartyWFHandler();
+                String url;
+
+                // VAL-29116: if consul connect is enabled, set the url for security service to the local envoy proxy to access over the service mesh
+                url = getSecurityServiceUrl(partyWFHandler, entityManager);
+
+                CommonResourceClient commonResourceClient = new CommonResourceClient(url, EMAIL_POST_PATH);
+
+                Map<String, Object> requestMap = new HashMap<>();
+                requestMap.put(EMAIL_ADDRESS, emailAddress);
+                requestMap.put(FIRST_NAME, firstName);
+                requestMap.put(LAST_NANE, language);
+                requestMap.put(PLATFORM, platform);
+                requestMap.put(LANGUAGE, language);
+                Map responseMap =
+                        commonResourceClient.executeGeneralProcess(requestMap, Map.class, ResourceRequestType.POST);
+                if (responseMap != null) {
+                    String key = (String) responseMap.get(USER_KEY);
+                    UserWFHandler userWFHandler = new UserWFHandler();
+                    Credential credential = userWFHandler.getCredential(userId, entityManager);
+                    credential.setOtpKey(key);
+                    entityManager.persist(credential);
+                }
+            });
+            
+            
+    public static void usingMxValuesTx(Consumer<EntityManager> emConsumer) {
+        usingTx(vxEntityManager::getMXValuesEntityManager, emConsumer);
+    }
+    
+    
+    private static void usingTx(Supplier<EntityManager> emSupplier, Consumer<EntityManager> emConsumer) {
+        usingTx(emSupplier, em -> {
+            emConsumer.accept(em);
+            return null;
+        });
+    }
+    
+    
+    private static <T> T usingTx(Supplier<EntityManager> emSupplier, Function<EntityManager, T> emFunction) {
+        return using(emSupplier, em -> {
+            try {
+                em.getTransaction().begin();
+                T result = emFunction.apply(em);
+                em.getTransaction().commit();
+                return result;
+            } catch (Throwable t) {
+                LOG.error("", t);
+
+                if (em != null && em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
+
+                throw t;
+            }
+        });
+    }    
+    
+    
+    private static <T> T using(Supplier<EntityManager> emSupplier, Function<EntityManager, T> emFunction) {
+        EntityManager em = null;
+
+        try {
+            em = emSupplier.get();
+            return emFunction.apply(em);
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+    }    
+    //the above code is interesting, looks the "EntityManager em" is the data you have, but, its real value coming from the lambda you provide.
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                    

@@ -7,7 +7,7 @@ import javax.crypto.SecretKey;
 
 import com.sun.org.apache.xml.internal.security.algorithms.JCEMapper;
 //import com.sun.org.apache.xml.internal.security.encryption.XMLCipher;
-import com.sun.org.apache.xml.internal.security.encryption.XMLCipher;
+//import com.sun.org.apache.xml.internal.security.encryption.XMLCipher;
 
 public class JCETest {
 	public static void main(String[] args) throws NoSuchAlgorithmException {
