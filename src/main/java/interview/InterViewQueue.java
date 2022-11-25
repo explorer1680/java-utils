@@ -18,10 +18,10 @@ public class InterViewQueue<T> {
 
 	}
 
-	public LinkedObject<T> pop() {
+	public T pop() {
 		LinkedObject<T> last = tail;
 		tail = tail.getPrev();
-		return last;
+		return last.getObj();
 	}
 
 	public LinkedObject<T> getHead() {
