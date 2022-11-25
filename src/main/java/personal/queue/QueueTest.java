@@ -1,13 +1,13 @@
-package interview;
+package personal.queue;
 
-public class Interview {
+public class QueueTest {
 	
 	
 	
 	public static void main(String[] args) {
 		
 		
-		InterViewQueue<String> ivq = new InterViewQueue<>();
+		Queue<String> ivq = new Queue<>();
 		
 		
 		ivq.push("A");
@@ -15,6 +15,7 @@ public class Interview {
 		ivq.push("C");
 		ivq.push("C");
 		
+		System.out.println(ivq.pop());
 		System.out.println(ivq.pop());
 		System.out.println(ivq.pop());
 		

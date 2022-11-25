@@ -1,4 +1,4 @@
-package interview;
+package personal.queue;
 
 public class LinkedObject<T> {
 	

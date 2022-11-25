@@ -1,6 +1,6 @@
-package interview;
+package personal.queue;
 
-public class InterViewQueue<T> {
+public class Queue<T> {
 	
 	private LinkedObject<T> head;
 	
