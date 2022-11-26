@@ -1,4 +1,4 @@
-package test;
+package quickcheck;
 
 import java.util.HashMap;
 import java.util.HashSet;

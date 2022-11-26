@@ -1,4 +1,4 @@
-package test;
+package quickcheck;
 
 public interface TestInferface {
 

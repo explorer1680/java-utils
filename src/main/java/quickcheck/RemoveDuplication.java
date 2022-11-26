@@ -1,4 +1,4 @@
-package test;
+package quickcheck;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;

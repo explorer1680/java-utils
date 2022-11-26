@@ -1,6 +1,4 @@
-package test;
-
-import java.util.Arrays;
+package quickcheck;
 
 public class Main{
 	public static void main(String[] args) {
