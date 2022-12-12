@@ -1,0 +1,274 @@
+ **You have a linked list and want to find the kth to last node.**
+
+Write a method `kthToLastNode` that takes an integer k and the `headNode` of a singly-linked list, and returns the kth to last node in the list.
+
+For example:
+
+`public class LinkedListNode {
+
+    public String value;
+    public LinkedListNode next;
+
+    public LinkedListNode(String value) {
+        this.value = value;
+    }
+}
+
+LinkedListNode a = new LinkedListNode("Angel Food");
+LinkedListNode b = new LinkedListNode("Bundt");
+LinkedListNode c = new LinkedListNode("Cheese");
+LinkedListNode d = new LinkedListNode("Devil's Food");
+LinkedListNode e = new LinkedListNode("Eccles");
+
+a.next = b;
+b.next = c;
+c.next = d;
+d.next = e;
+
+kthToLastNode(2, a);
+// returns the node with value "Devil's Food" (the 2nd to last node)`
+
+
+
+
+# Gotchas
+
+We can do this in O(n) time.
+
+We can do this in O(1) space. If you're recursing, you're probably taking O(n) space on the call stack!
+
+
+# Breakdown
+
+It might be tempting to iterate through the list until we reach the end and then walk backward k nodes.
+
+But we have a _singly_ linked list! We can’t go backward. What else can we do?
+
+What if we had the _length_ of the list?
+
+Then we could calculate how far to walk, starting from the head, to reach the kth to last node.
+
+If the list has n nodes:
+
+{% svg "kth\_last\_node\_\_n\_node\_list" %}
+
+And our target is the kth to last node:
+
+{% svg "kth\_last\_node\_\_k\_from\_end" %}
+
+The distance from the head to the target is n-k:
+
+{% svg "kth\_last\_node\_\_n\_minus\_k\_from\_start" %}
+
+Well, we _don't_ know the length of the list (n). But can we _figure it out?_
+
+Yes, we could iterate from the head to the tail and count the nodes!
+
+Can you implement this approach in code?
+
+`public static LinkedListNode kthToLastNode(int k, LinkedListNode head) {
+
+    // STEP 1: get the length of the list
+    // start at 1, not 0
+    // else we'd fail to count the head node!
+    int listLength = 1;
+    LinkedListNode currentNode = head;
+
+    // traverse the whole list,
+    // counting all the nodes
+    while (currentNode.next != null) {
+        currentNode = currentNode.next;
+        listLength += 1;
+    }
+
+    // STEP 2: walk to the target node
+    // calculate how far to go, from the head,
+    // to get to the kth to last node
+    int howFarToGo = listLength - k;
+
+    currentNode = head;
+    for (int i = 0; i < howFarToGo; i++) {
+        currentNode = currentNode.next;
+    }
+
+    return currentNode;
+}`
+
+What are our time and space costs?
+
+O(n) time and O(1) space, where n is the length of the list.
+
+More precisely, it takes n steps to get the length of the list, and another n-k steps to reach the target node. In the worst case k=1, so we have to walk all the way from head to tail _again_ to reach the target node. This is a total of 2n steps, which is O(n).
+
+Can we do better?
+
+Mmmmaaaaaaybe.
+
+The fact that we walk through our whole list once just to get the length, then walk through the list _again_ to get to the kth to last element sounds like a lot of work. Perhaps we can do this in just one pass?
+
+What if we had like a "stick" that was k nodes wide. We could start it at the beginning of the list so that the left side of the stick was on the head and the right side was on the kth node.
+
+{% svg "kth\_last\_node\_\_stick\_at\_start" %}
+
+Then we could slide the stick down the list...
+
+{% svg "kth\_last\_node\_\_stick\_shifted" %}
+
+until the right side hit the end. At that point, the left side of the stick would be on the kth to last node!
+
+{% svg "kth\_last\_node\_\_stick\_at\_end" %}
+
+How can we implement this? Maybe it'll help to keep _two_ pointers?
+
+We can allocate two variables that'll be references to the nodes at the left and right sides of the "stick"!
+
+`public static LinkedListNode kthToLastNode(int k, LinkedListNode head) {
+
+    LinkedListNode leftNode = head;
+    LinkedListNode rightNode = head;
+
+    // move rightNode to the kth node
+    for (int i = 0; i < k - 1; i++) {
+        rightNode = rightNode.next;
+    }
+
+    // starting with leftNode on the head,
+    // move leftNode and rightNode down the list,
+    // maintaining a distance of k between them,
+    // until rightNode hits the end of the list
+    while (rightNode.next != null) {
+        leftNode = leftNode.next;
+        rightNode = rightNode.next;
+    }
+
+    // since leftNode is k nodes behind rightNode,
+    // leftNode is now the kth to last node!
+    return leftNode;
+}`
+
+This'll work, but **does it actually save us any time**?
+
+
+# Solution
+
+We can think of this two ways.
+
+**First approach: use the length of the list.**
+
+1. walk down the whole list, counting nodes, to get the total `listLength`.
+2. subtract k from the `listLength` to get the distance from the head node to the target node (the `k`th to last node).
+3. walk that distance from the head to arrive at the target node.
+
+`public static LinkedListNode kthToLastNode(int k, LinkedListNode head) {
+
+    if (k < 1) {
+        throw new IllegalArgumentException("Impossible to find less than first to last node: " + k);
+    }
+
+    // STEP 1: get the length of the list
+    // start at 1, not 0
+    // else we'd fail to count the head node!
+    int listLength = 1;
+    LinkedListNode currentNode = head;
+
+    // traverse the whole list,
+    // counting all the nodes
+    while (currentNode.next != null) {
+        currentNode = currentNode.next;
+        listLength += 1;
+    }
+
+    // if k is greater than the length of the list, there can't
+    // be a kth-to-last node, so we'll return an error!
+    if (k > listLength) {
+        throw new IllegalArgumentException("k is larger than the length of the linked list: " + k);
+    }
+
+    // STEP 2: walk to the target node
+    // calculate how far to go, from the head,
+    // to get to the kth to last node
+    int howFarToGo = listLength - k;
+
+    currentNode = head;
+    for (int i = 0; i < howFarToGo; i++) {
+        currentNode = currentNode.next;
+    }
+
+    return currentNode;
+}`
+
+**Second approach: maintain a k-wide "stick" in one walk down the list.**
+
+1. Walk one pointer k nodes from the head. Call it `rightNode`.
+2. Put another pointer at the head. Call it `leftNode`.
+3. Walk both pointers, at the same speed, towards the tail. This keeps a distance of k between them.
+4. When `rightNode` hits the tail, `leftNode` is on the target (since it's k nodes from the end of the list).
+
+`public static LinkedListNode kthToLastNode(int k, LinkedListNode head) {
+
+    if (k < 1) {
+        throw new IllegalArgumentException(
+            "Impossible to find less than first to last node: " + k);
+    }
+
+    LinkedListNode leftNode = head;
+    LinkedListNode rightNode = head;
+
+    // move rightNode to the kth node
+    for (int i = 0; i < k - 1; i++) {
+
+        // but along the way, if a rightNode doesn't have a next,
+        // then k is greater than the length of the list and there
+        // can't be a kth-to-last node! we'll raise an error
+        if (rightNode.next == null) {
+            throw new IllegalArgumentException(
+                "k is larger than the length of the linked list: " + k);
+        }
+
+        rightNode = rightNode.next;
+    }
+
+    // starting with leftNode on the head,
+    // move leftNode and rightNode down the list,
+    // maintaining a distance of k between them,
+    // until rightNode hits the end of the list
+    while (rightNode.next != null) {
+        leftNode = leftNode.next;
+        rightNode = rightNode.next;
+    }
+
+    // since leftNode is k nodes behind rightNode,
+    // leftNode is now the kth to last node!
+    return leftNode;
+}`
+
+In either approach, make sure to check if `k` is greater than the length of the linked list! That's bad input, and we'll want to raise an error.
+
+
+# Complexity
+
+Both approaches use O(n) time and O(1) space.
+
+**But the second approach is fewer steps since it gets the answer "in one pass," right? _Wrong._**
+
+In the first approach, we walk one pointer from head to tail (to get the list's length), then walk another pointer from the head node to the target node (the kth to last node).
+
+In the second approach, `rightNode` _also_ walks all the way from head to tail, and `leftNode` _also_ walks from the head to the target node.
+
+So in both cases, we have two pointers taking the same steps through our list. The only difference is the _order_ in which the steps are taken. The number of steps is the same either way.
+
+**However, the second approach _might_ still be slightly _faster_, due to some caching and other optimizations that modern processors and memory have.**
+
+Let's focus on caching. Usually when we grab some data from memory (for example, info about a linked list node), we also store that data in a small cache right on the processor. If we need to use that same data again soon after, we can quickly grab it from the cache. But if we don't use that data for a while, we're likely to replace it with other stuff we've used more recently (this is called a "least recently used" replacement policy).
+
+Both of our algorithms access a lot of nodes in our list twice, so they _could_ exploit this caching. But notice that in our second algorithm there's a much shorter time between the first and second times that we access a given node (this is sometimes called "temporal locality of reference"). Thus it seems more likely that our second algorithm will save time by using the processor's cache! But this assumes our processor's cache uses something like a "least recently used" replacement policy—it might use something else. Ultimately the _best_ way to really know which algorithm is faster is to implement both and time them on a few different inputs!
+
+
+# Bonus
+
+Can we do better? What if we expect n to be huge and k to be pretty small? In this case, our target node will be close to the end of the list...so it seems a waste that we have to walk all the way from the beginning _twice_.
+
+Can we trim down the number of steps in the "second trip"? One pointer will certainly have to travel all the way from head to tail in the list to get the total length...but can we store some "checkpoints" as we go so that the second pointer doesn't have to start all the way at the beginning? Can we store these "checkpoints" in constant space? Note: this approach only saves time if we know that our target node is towards the _end_ of the list (in other words, n is much larger than k).
+
+
+
