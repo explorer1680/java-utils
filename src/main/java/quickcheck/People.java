@@ -2,7 +2,7 @@ package quickcheck;
 
 public class People implements Cloneable{
 	
-	private static People singleton = null;
+	private static volatile People singleton = null;
 	
 	private People() {}
 
