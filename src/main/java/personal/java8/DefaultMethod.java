@@ -14,6 +14,10 @@ interface Sayable2 {
 	static void sayLouder(String msg) {
 		System.out.println(msg);
 	}
+
+	private void privateMethod(){
+
+	};
 	
 //	default String toString(){//default method can't be Object method.
 //	}
